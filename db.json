@@ -1,0 +1,6 @@
+{
+  "posts": [
+    { "id": "1", "title": "我的第一篇博客", "category": "技术", "summary": "Query 三态", "content": "从 create-vite 到第一个组件，一步一步来。", "publishedAt": "2026-09-01" },
+    { "id": "2", "title": "乐观更新初体验", "category": "随笔", "summary": "先秒出、失败回滚", "content": "onMutate 快照，onError 回滚，onSettled 重拉。", "publishedAt": "2026-09-03" }
+  ]
+}
