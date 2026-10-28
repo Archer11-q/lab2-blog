@@ -37,7 +37,15 @@ pnpm build
 pnpm preview
 ```
 
-已部署：https://Archer11-q.github.io/lab2-blog/ （GitHub Pages）
+已部署：
+
+| 平台 | 地址 | 备注 |
+|---|---|---|
+| 腾讯云 EdgeOne Makers | https://lab2-blog-aqpkucok.edgeone.cool?eo_token=e7d8f319b0cd760be2589fa032c071a8&eo_time=1793154247 | 默认域名带访问令牌，须整串打开；每次进入续 3 小时会话 |
+| 腾讯云 CloudBase 静态网站托管 | https://exp1-ssr-lab-d4giuf63la426d285-1492091570.tcloudbaseapp.com/ | 首次访问有「风险提醒」中间页，点「确定访问」进站点；长期有效 |
+| GitHub Pages | https://archer11-q.github.io/lab2-blog/ | 子路径部署，`VITE_BASE=/lab2-blog/` |
+
+云端两个地址都用根路径构建（`pnpm build` 默认 `base: '/'`），因此互不冲突；只有 GitHub Pages 需要子路径，由工作流注入 `VITE_BASE`。
 
 ## 提交信息规范
 
