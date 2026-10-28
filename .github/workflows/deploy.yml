@@ -26,6 +26,8 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
+        env:
+          VITE_BASE: /lab2-blog/   # Pages 走子路径；云端根路径部署用默认 /
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

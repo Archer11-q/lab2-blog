@@ -2,7 +2,9 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
-const API = "http://localhost:3000/posts";   // json-server：pnpm json-server db.json --port 3000 --delay 500
+const API = import.meta.env.VITE_POSTS_API || "http://localhost:3000/posts";
+// 云端部署未注入后端地址时不渲染本区，避免线上必然请求 localhost 失败
+const ENABLED = import.meta.env.DEV || Boolean(import.meta.env.VITE_POSTS_API);
 
 export default function RemotePosts() {
   const qc = useQueryClient();
@@ -12,6 +14,7 @@ export default function RemotePosts() {
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["posts"],
     queryFn: () => fetch(API + "?_limit=10").then((r) => r.json()),
+    enabled: ENABLED,
   });
 
   // 乐观更新：先秒出、失败回滚、成功后重拉对齐
@@ -32,6 +35,7 @@ export default function RemotePosts() {
     onSettled: () => qc.invalidateQueries({ queryKey: ["posts"] }),   // 重新拉取对齐
   });
 
+  if (!ENABLED) return null;
   if (isPending) return <p className="empty">服务端文章加载中…</p>;
   if (isError) return <p className="empty">出错了：{error.message}</p>;
 

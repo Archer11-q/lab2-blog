@@ -1,0 +1,7 @@
+{
+  "name": "lab2-blog",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist",
+  "nodeVersion": "22.11.0"
+}
